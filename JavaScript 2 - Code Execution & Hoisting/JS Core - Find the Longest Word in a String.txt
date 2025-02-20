@@ -1,0 +1,22 @@
+				QUESTION
+
+Write a function that takes in a string and returns the longest word in that string.
+If there are multiple words with the same length, return the first one you encounter.
+
+Example:
+	Input:	"JavaScript is a fun programming language"
+
+	Output:	"programming"
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+function findLongestWord(str) {
+  	let words = str.split(/\s+/);
+  	let longestWord = "";
+  	for(let word of words) {
+      		if(word.length > longestWord.length) {
+          		longestWord = word;
+      		}
+  	}
+  	return longestWord;
+}
