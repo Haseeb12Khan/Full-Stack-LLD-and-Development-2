@@ -1,7 +1,6 @@
 				QUESTION
 
 Use a for loop to iterate through an array of numbers and log each element multiplied by 2.
-
 main function will be called with an array of integers as argument.
 
 Input Format: Values of an array
