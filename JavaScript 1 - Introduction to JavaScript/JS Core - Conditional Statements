@@ -1,9 +1,7 @@
 				QUESTION
 
 Write an if-else statement to check if a user is older than 18.
-
 If true, log "You are an adult." otherwise log "You are a minor."
-
 main function will be called with an argument with the value of age.
 
 Input Format: Integer
