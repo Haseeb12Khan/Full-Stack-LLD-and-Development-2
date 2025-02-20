@@ -1,0 +1,22 @@
+				QUESTION
+
+Write a function named calculateArea that takes the radius of a circle as a parameter and returns the area.
+
+The calculateArea function is called with the argument and the result is stored in a variable called circleArea.
+
+Input Format: Number
+
+Constraints: n <= 10 ^ 9
+
+Output Format: Number
+
+Sample Input: 5
+
+Sample Output: 78.5
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+function calculateArea(radius){
+  	let circleArea = 3.14 * radius * radius;
+  	return circleArea;
+}
