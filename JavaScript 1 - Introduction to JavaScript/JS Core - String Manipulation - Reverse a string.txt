@@ -1,0 +1,24 @@
+				QUESTION
+
+Create a function called reverseString that takes a string as input and returns the reversed version.
+
+The function is called with the argument of a string that needs to be reversed.
+
+Use array methods to reverse the string.
+
+Input Format: String
+
+Sample Input: hello
+
+Sample Output: olleh
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+function reverseString(inputString) {
+  	let result = "";
+  	const n = inputString.length;
+  	for(let i=0;i<n;i++) {
+      		result = inputString[i] + result;
+  	}
+  	return result;
+}
