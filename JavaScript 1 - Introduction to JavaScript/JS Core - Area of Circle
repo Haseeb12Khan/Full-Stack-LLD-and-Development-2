@@ -1,7 +1,6 @@
 				QUESTION
 
 Write a function named calculateArea that takes the radius of a circle as a parameter and returns the area.
-
 The calculateArea function is called with the argument and the result is stored in a variable called circleArea.
 
 Input Format: Number
