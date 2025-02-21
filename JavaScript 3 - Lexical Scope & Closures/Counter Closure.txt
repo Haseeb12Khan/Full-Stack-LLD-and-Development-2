@@ -1,0 +1,49 @@
+				QUESTION
+
+Create a function in JavaScript that utilizes closures to maintain a private counter. 
+The function should return an inner function that, when called, increments and returns the current value of the counter.
+
+You just have to complete the JS file.
+
+Test Cases:
+	1. Create a counter instance and call it once, expecting the count to be 1.
+	2. Call the same counter instance again, expecting the count to increment to 2.
+	3. Create a new counter instance and verify it starts at 1, ensuring independence of counters.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+--------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Counter Closure</title>
+</head>
+
+<body>
+    <!-- No need to change HTML -->
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+script.js
+----------------------------------------------
+function createCounter() {
+  let counter = 0;
+  // Implement the closure here and return the counter value from the closure
+  return function() {
+      return ++counter;
+  };
+}
+var count = createCounter();
+console.log(count());
+console.log(count());
+var count1 = createCounter();
+console.log(count1());
