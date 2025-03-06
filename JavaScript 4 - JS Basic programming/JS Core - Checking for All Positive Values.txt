@@ -1,0 +1,14 @@
+				QUESTION
+
+Write a JavaScript function named allPositive that checks whether all numbers in a given array are positive using the every() method.
+
+Example:
+	Inputs:	An array of numbers.
+
+	Outputs: A Boolean value. Return true if all numbers are positive, otherwise false.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+function allPositive(numbers) {
+  	return numbers.every(num => num > 0);
+}
