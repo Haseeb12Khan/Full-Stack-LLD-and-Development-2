@@ -18,7 +18,7 @@ Use the below-mentioned method to set the image as background: element.style.bac
 Test Cases:
 	-> Verify that the jail is drawn when the mouse hovers over the cell.
 	-> Verify that the jail is removed when the mouse exits the cell.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
