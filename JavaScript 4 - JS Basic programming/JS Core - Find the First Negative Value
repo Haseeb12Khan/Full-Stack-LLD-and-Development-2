@@ -7,7 +7,7 @@ Example:
 	Inputs:	An array of numbers.
 
 	Outputs: A number representing the first negative number in the array or undefined if there are no negative numbers.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 function findFirstNegative(numbers) {
