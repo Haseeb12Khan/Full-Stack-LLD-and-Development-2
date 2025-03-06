@@ -7,7 +7,7 @@ Write a program in JavaScript, that implements the following behaviour on the ab
 3. Triple removes the highlights
 
 Note: Here highlight means to set the background of the element to a desired color.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
