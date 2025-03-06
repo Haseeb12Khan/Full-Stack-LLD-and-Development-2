@@ -12,7 +12,7 @@ Note: Don't make any changes to the HTML and CSS.
 Test Cases:
 	-> Verify that the color of the card changes when double clicked (class of desired color is added)
 	-> Verify that the data-color attribute is set to 'used' after double clicking
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
