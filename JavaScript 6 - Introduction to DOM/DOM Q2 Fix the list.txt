@@ -1,0 +1,45 @@
+				QUESTION
+
+Write a program in JavaScript to do the below-mentioned task:
+
+Fix the list of elements by adding the missing element using DOM methods like querySelectorAll and insertBefore.
+
+Note:	Add the missing number to the list without changing the HTML part of the code.
+
+Test Cases:
+	-> Verify that the missing <li> element has been added
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+</body>
+<script>
+    const list = document.querySelectorAll("li");
+    const itemContaining8 = list[6];
+
+    const missingElement = document.createElement("li");
+    missingElement.innerText = 7;
+
+    const parent = document.querySelector("ul");
+    parent.insertBefore(missingElement,itemContaining8);
+</script>
+</html>
