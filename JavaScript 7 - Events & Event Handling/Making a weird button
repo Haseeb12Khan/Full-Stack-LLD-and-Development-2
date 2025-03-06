@@ -15,7 +15,7 @@ Refer to the test cases to further understand the requirements to submit the pro
 Test Cases:
 	-> Clicking on 'double button' removes it and adds two new 'double' buttons inside the parent div.
 	-> Clicking on any of these two buttons also removes it and adds two new 'double' buttons.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
