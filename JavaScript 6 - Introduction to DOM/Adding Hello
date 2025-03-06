@@ -7,7 +7,7 @@ When the button is clicked, append a <div> element, containing inner text 'Hello
 Test Cases:
 	-> Verify that a new <div> is added to <body> when button is clicked.
 	-> Verify that the inner text of the <div> is 'Hello'
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
