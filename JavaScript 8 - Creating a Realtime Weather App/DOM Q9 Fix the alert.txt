@@ -1,0 +1,62 @@
+				QUESTION
+
+The given JS code is broken. This is because:
+
+Even when yellow box is clicked, it is alerted that red is clicked.
+
+Fix the code such that:
+	1. It alerts as 'yellow is clicked' when yellow box is clicked.
+	2. and alerts as 'red is clicked' when the red box is clicked.
+	3. A single alert is generated when any of the box is clicked.
+
+Test Cases:
+	1. Verify that the program alerts as 'yellow is clicked' when the yellow box is clicked.
+	2. A single alert is generated when any of the box is clicked.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid;
+        }
+
+        .red {
+            padding: 2rem;
+            height: 20rem;
+            width: 20rem;
+            background-color: red;
+        }
+
+        .yellow {
+            height: 10rem;
+            width: 10rem;
+            margin: auto;
+            background-color: yellow;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="red">
+        <div class="yellow"></div>
+    </div>
+    <script>
+        let red = document.querySelector(".red");
+        red.addEventListener('click', (e) => {
+            if(e.target.classList.contains('red')) {
+                alert('red is clicked');
+            }
+            else if(e.target.classList.contains('yellow')) {
+                alert('yellow is clicked')
+            }
+        });
+    </script>
+</body>
+</html>

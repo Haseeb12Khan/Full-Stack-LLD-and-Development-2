@@ -1,0 +1,62 @@
+				QUESTION
+
+In the HTML provided, there is a list with every item containing an individual delete button and a remove all button on top of the list.
+
+Write a JavaScript program that performs the following tasks:
+
+Task 1:
+	-> Make all the individual delete buttons work.
+	-> Set the list item's (li element) display style property as 'none'.
+
+Task 2:
+	-> Make the Remove All button work.
+	-> Set the entire list's (ul element) display style property as 'none'.
+
+Test Cases:
+	-> Verify that the individual delete buttons are working.
+	-> Verify that the Remove All button is working.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <button id="all">Remove All</button>
+    <ul id="itemList">
+        <li>
+            <p>Task - 1</p>
+            <button class="deleteBtn">delete</button>
+        </li>
+        <li>
+            <p>Task - 2</p>
+            <button class="deleteBtn">delete</button>
+        </li>
+        <li>
+            <p>Task - 3</p>
+            <button class="deleteBtn">delete</button>
+        </li>
+        <li>
+            <p>Task - 4</p>
+            <button class="deleteBtn">delete</button>
+        </li>
+    </ul>
+    <script>
+        document.addEventListener("DOMContentLoaded",function() {
+            document.querySelectorAll(".deleteBtn").forEach(button => {
+                button.addEventListener("click",function() {
+                    this.parentElement.style.display = "none";
+                });
+            });
+            document.getElementById("all").addEventListener("click",function() {
+                document.getElementById("itemList").style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
