@@ -11,24 +11,21 @@ Write the code in script.js file, and utilise the flag boolean to manage states 
 
 Test Cases:
 	 -> Verify that div.modal-cont is visible when div.add-btn is clicked.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
 -------------------------
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ticket Management App</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
     <div class="toolbox-cont">
         <div class="toolbox-priority-cont">
@@ -37,7 +34,6 @@ index.html
             <div class="lightblue color"></div>
             <div class="black color"></div>
         </div>
-
         <div class="action-btn-cont">
             <div class="add-btn">
                 <img src="plus-logo.png" alt="color-logo" height="50%">
@@ -47,8 +43,6 @@ index.html
             </div>
         </div>
     </div>
-
-
     <div class="main-cont">
         <!-- <div class="ticket-cont">
             <div class="ticket-color"></div>
@@ -59,14 +53,10 @@ index.html
            </div> -->
     </div>
     </div>
-
     <!-- Modal -->
     <div class="modal-cont">
-
         <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
-
-       </textarea>
-
+        </textarea>
         <div class="priority-colors-container">
             <div class="lightpink priority-color"></div>
             <div class="lightgreen priority-color"></div>
@@ -76,9 +66,7 @@ index.html
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
-
 
 
 script.js
