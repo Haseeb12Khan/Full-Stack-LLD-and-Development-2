@@ -25,7 +25,7 @@ Write the code in the script.js file, you have been provided some boilerplate co
 
 Test Cases:
 	-> Verify that ticket color gets changed when clicked on it.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
@@ -38,9 +38,7 @@ index.html
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ticket Management App</title>
-
     <link rel="stylesheet" href="boilerplate.css">
-
 </head>
 <body>
     <div class="toolbox-cont">
@@ -246,7 +244,6 @@ let ticket = document.querySelector(".ticket-cont");
 let colors = ["lightpink", "lightgreen", "lightblue", "black"];
 
 handleColor(ticket)
-
 
 function handleColor(ticket) {
     let ticketColorBand = ticket.querySelector(".ticket-color");
