@@ -66,7 +66,7 @@ Test Cases:
 	-> Verify that clicking on lightblue color box is working.
 	-> Verify that clicking on black color box is working.
 	-> Verify that double clicking on any of the color box is working.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 					SOLUTION
 
 <!DOCTYPE html>
