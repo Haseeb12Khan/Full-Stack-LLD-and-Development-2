@@ -61,7 +61,6 @@ allPriorityColors.forEach(function (colorElem) {
 //   - Call `createTicket()` with the selected color, ID, and task content.
 //   - Hide the modal and clear the textarea content.
 modalCont.addEventListener('keydown', function (e) {
-  // IMPLEMENT HERE
   if(e.key === 'Shift') {
     let ticketContent = textAreaCont.value;
     let ticketID = shortid.generate();
@@ -79,7 +78,6 @@ modalCont.addEventListener('keydown', function (e) {
 // - Add the ticket's color, ID, and task content dynamically.
 // - Append the ticket to the `mainCont`.
 function createTicket(ticketColor, ticketID, ticketTask) {
-  // IMPLEMENT HERE
   console.log(ticketColor,ticketID,ticketTask);
   let ticket_container = document.createElement("div");
   ticket_container.classList.add("ticket-cont");
@@ -102,7 +100,6 @@ function createTicket(ticketColor, ticketID, ticketTask) {
 // - If `removeTaskFlag` is true, set the button color to "red" to indicate active mode.
 // - Otherwise, set the button color to "white".
 removeBtn.addEventListener('click', function () {
-  // IMPLEMENT HERE
   removeTaskFlag = !removeTaskFlag;
 
   if(removeTaskFlag) {
@@ -119,7 +116,6 @@ removeBtn.addEventListener('click', function () {
 // - Add an event listener to the ticket for the "click" event.
 // - If `removeTaskFlag` is true, remove the ticket from the DOM.
 function handleRemoval(ticket) {
-  // IMPLEMENT HERE
   ticket.addEventListener("click",function() {
     if(!removeTaskFlag) {
       return;
@@ -128,45 +124,4 @@ function handleRemoval(ticket) {
       ticket.remove();
     }
   });
-}
-
-// Task 7: Filter tickets by color
-// - Loop through each color element in `toolboxColors`.
-// - Add a "click" event listener to each color element.
-// - On click, retrieve the selected color and filter the tickets by matching color.
-//   - Loop through all tickets and check if the color band matches the selected color.
-//   - Display matching tickets and hide others.
-// - Add a "dblclick" event listener to reset the filter.
-//   - Show all tickets again when double-clicked.
-toolboxColors.forEach(function (colorElem) {
-  // Single-click to filter tickets
-  colorElem.addEventListener("click", function () {
-  });
-
-  // Double-click to reset filters
-  colorElem.addEventListener("dblclick", function () {
-  });
-});
-
-
-// Task 8: Handle ticket lock/unlock functionality
-// - Write a function `handleLock(ticket)`.
-// - Inside the function, find the lock icon and task area in the ticket.
-// - Add a "click" event listener to the lock icon.
-// - When clicked, toggle between `lockClass` and `unlockClass`.
-//   - If locked, make the task area `contenteditable=false`.
-//   - If unlocked, make the task area `contenteditable=true`.
-function handleLock(ticket) {
-  let ticketLockElem = ticket.querySelector(".ticket-lock");
-  let ticketLockIcon = ticketLockElem.children[0];
-  let ticketTaskArea = ticket.querySelector(".task-area");
-}
-
-// Task 9: Cycle through ticket colors
-// - Write a function `handleColor(ticket)`.
-// - Inside the function, find the color band in the ticket.
-// - Add a "click" event listener to the color band.
-// - When clicked, cycle through the `colors` array to update the ticket's color.
-function handleColor(ticket) {
-  let ticketColorBand = ticket.querySelector(".ticket-color");
 }
