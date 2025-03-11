@@ -1,0 +1,56 @@
+				QUESTION
+
+Write a single click event handler that helps to delete any list item when clicked on it, attach that handler to above list
+
+The HTML has majorly 3 components in following hierarchy: ul > li > a
+
+1. ul #listToDestroy:
+	1.1. contains the entire list
+	1.2. has 5 li tags with unique id.
+
+2. li:
+	2.1. contains an anchor tag <a> in it.
+
+3. a:
+	3.1. contains unique inner Text in it.
+
+
+Your task is to:
+	1. Whenever clicked the specific list item, <li> element, from the list ul #listToDestroy.
+	2. The new list should have list items 1 less than the previous state.
+	3. Unique ID and inner Text should remain intact for each list item.
+
+Test Cases:
+	-> Verify that clicking on a specific li, deletes it.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="listToDestroy">
+    <li id = "Item-1"><a href="#">first item</a></li>
+    <li id = "Item-2"><a href="#">second item</a></li>
+    <li id = "Item-3"><a href="#">third item</a></li>
+    <li id = "Item-4"><a href="#">forth item</a></li>
+    <li id = "Item-5"><a href="#">Fifth item</a></li>
+  </ul>
+  
+  <script>
+    document.getElementById("listToDestroy").addEventListener("click",function(event) {
+      if(event.target.tagName === "A") {
+        event.target.parentElement.remove();
+      }
+    });
+  </script>
+</body>
+
+</html>
