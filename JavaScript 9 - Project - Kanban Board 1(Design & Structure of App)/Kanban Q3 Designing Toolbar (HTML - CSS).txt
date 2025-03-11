@@ -1,0 +1,90 @@
+				QUESTION
+
+Your task is to write CSS for the toolbar.
+
+You have been given HTML boilerplate code and you have to apply the below CSS rules:
+
+.toolbox-cont should have:
+	1. Background color set to '#4b4b4b'
+	2. display set as flex
+	3. align-items set as center
+
+.toolbox-priority-cont should have:
+	1. Background color set to '#3d3d3d'
+	2. display set as flex
+	3. align-items set as center
+	4. justify-content set as space-evenly
+
+.action-btn-cont should have:
+	1. Background color set to '#3d3d3d'
+	2. display set as flex
+
+.action-btn-cont>* should have:
+	1. display set as flex
+	2. align-items set as center
+	3. justify-content set as center
+	4. color set as 'white'
+
+
+Test Cases:
+	-> Verify that .toolbox-cont has correct CSS
+	-> Verify that .toolbox-priority-cont has correct CSS
+	-> Verify that .action-btn-cont has correct CSS
+	-> Verify that .action-btn-cont > * has correct CSS
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="boilerplate.css">
+    <style>
+        .toolbox-cont {
+            background-color: #4b4b4b;
+            display: flex;
+            align-items: center;
+        }
+        .toolbox-priority-cont {
+            background-color: #3d3d3d;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .action-btn-cont {
+            background-color: #3d3d3d;
+            display: flex;
+        }
+        .action-btn-cont > * {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="add-btn">
+                <img src="plus-logo.png" alt="color-logo" height="50%">
+            </div>
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

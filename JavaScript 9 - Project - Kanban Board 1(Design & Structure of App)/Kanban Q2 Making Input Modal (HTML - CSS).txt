@@ -1,0 +1,68 @@
+				QUESTION
+
+Your task is to write CSS for the modal to create a new ticket.
+
+You have been given HTML and CSS boilerplate code and you have to apply the below CSS rules:
+
+.modal-cont should have:
+	1. display of flex
+	2. background color of 'lightblue'
+	3. height of 300px and width of 500px
+
+.priority-colors-container should have:
+	1. display of flex
+	2. flex direction of column
+	3. align items is set to 'center'
+	4. justify content is set to 'space-around'
+
+
+Test Cases:
+	-> Verify that .modal-cont has correct CSS
+	-> Verify that .priority-colors-container has correct CSS
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="stylesheet" href="boilerplate.css">
+    <style>
+        .modal-cont {
+            display: flex;
+            background-color: lightblue;
+            height: 300px;
+            width: 500px;
+        }
+        .priority-colors-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Modal -->
+    <div class="modal-cont">
+
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+
+           </textarea>
+
+
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
