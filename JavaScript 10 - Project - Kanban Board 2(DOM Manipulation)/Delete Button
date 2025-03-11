@@ -66,7 +66,7 @@ Test Cases:
 	-> Verify that clicking on inactive delete button turns the background color of the div.remove-btn to 'inherit'.
 	-> Verify that when the delete button is active, clicking on a ticket removes it from UI.
 	-> Verify that when the delete button is inactive, clicking on a ticket does nothing.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
@@ -138,9 +138,6 @@ index.html
 script.js
 ---------------------------------
 
-// WARNING: DO NOT EDIT THE BELOW CODE OR DATA
-
-// DUMMY DATA FOR THE COLORS
 let ticketsArr = [
   {
     ticketTask: "This is task 1 (lightgreen)",
@@ -189,7 +186,6 @@ function createTicket(ticketTask, ticketColor, ticketID) {
 }
 
 
-
 style.css
 -------------------------------
 
@@ -221,7 +217,6 @@ body {
   align-items: center;
   justify-content: space-evenly;
 }
-
 
 .action-btn-cont {
   height: 3.5rem;
@@ -264,7 +259,6 @@ body {
   background-color: black;
 }
 
-
 .modal-cont {
   height: 50vh;
   width: 45vw;
@@ -276,7 +270,6 @@ body {
 
 }
 
-
 .textArea-cont {
   height: 100%;
   width: 75%;
@@ -287,7 +280,6 @@ body {
   font-size: 2rem;
   padding: 2rem;
 }
-
 
 .priority-colors-container {
   height: 100%;
@@ -304,7 +296,6 @@ body {
   width: 5rem;
 }
 
-
 .main-cont {
   display: flex;
   gap: 2rem;
@@ -313,18 +304,15 @@ body {
   flex-wrap: wrap;
 }
 
-
 .ticket-cont {
   height: 12rem;
   width: 15rem;
   background-color: coral;
 }
 
-
 .ticket-color {
   height: 1rem;
 }
-
 
 .ticket-id {
   background-color: yellow;
@@ -356,11 +344,9 @@ body {
   background-color: #4BB543;
 }
 
-
-.toolbox-priority-cont>*:hover {
+.toolbox-priority-cont > *:hover {
   background-color: #485460;
 }
-
 
 .active {
   border: 5px solid coral;
