@@ -19,12 +19,11 @@ You have been given HTML and CSS boilerplate code and you have to apply the belo
 Test Cases:
 	-> Verify that .modal-cont has correct CSS
 	-> Verify that .priority-colors-container has correct CSS
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,24 +44,17 @@ Test Cases:
         }
     </style>
 </head>
-
 <body>
     <!-- Modal -->
     <div class="modal-cont">
-
         <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
-
-           </textarea>
-
-
+        </textarea>
         <div class="priority-colors-container">
             <div class="lightpink priority-color"></div>
             <div class="lightgreen priority-color"></div>
             <div class="lightblue priority-color"></div>
             <div class="black priority-color active"></div>
         </div>
-
     </div>
 </body>
-
 </html>
