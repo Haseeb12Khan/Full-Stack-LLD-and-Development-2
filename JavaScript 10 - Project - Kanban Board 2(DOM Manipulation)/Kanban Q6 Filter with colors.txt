@@ -1,0 +1,145 @@
+				QUESTION
+
+Write a JavaScript program to:
+
+Implement the filter feature for the tickets based on the priority colors. (lightpink, lightgreen, lightblue, black)
+
+Task 1: Whenever a particular color is clicked from the toolbox 
+---------------------------------------------------------------------------------------	
+	1.1 Remove all the existing tickets from Document.
+	1.2 Only the tickets with the assigned priority colors should be added to the Document.
+
+Task 2: Whenever any of the color is double clicked 
+---------------------------------------------------------------------------------------
+	1.1 Remove all the existing tickets from Document.
+	1.2 All the tickets (regardless of color) should be added to the Document.
+
+
+Important information and algorithms:
+--------------------------------------------------------
+1. How to add a ticket to the document?
+	-> createTicket(ticket-task, ticket-color, ticket-id) function has been provided in the script.js,
+	-> this function creates and adds a ticket to the Document with below structure.
+
+Ticket structure :
+------------------------
+	<div class="ticket-cont">
+	<div class="ticket-color"></div>
+	<div class="ticket-id">id 1</div>
+	<div class="task-area"> this is task 1</div>
+	<div class="ticket-lock">
+	<i class="fa-solid fa-lock"></i>
+	</div>
+
+2. How to access the ticket information (ticket-task, ticket-color, ticket-id)?
+	-> To create the tickets, you would utilise createTicket(ticket-task, ticket-color, ticket-id) function,
+	-> this function requires several parameters as input.
+	-> To access these ticket values, you are provided a global variable ticketsArr
+	-> which is an Array of Objects holding objects containing individual values (ticketTask, ticketColor, ticketID) of 4 tickets.
+
+3. How to remove all the tickets from the document?
+	-> To remove unwanted tickets from the Document, utilise DOM function Element.remove()
+	-> To select a ticket element to, use class 'ticket-cont', as descibed on the ticket structure above.
+
+
+Below are the algorithms that need to be followed for both the tasks,
+-----------------------------------------------------------------------------------
+Algorithm for Task 1:
+----------------------------
+	Step 1. After removing every ticket from the Document.
+	Step 2. You can access 'ticketsArr' array,
+	Step 3. filter it on the basis of the selected color from the toolBox (don't overwrite global array 'ticketsArr')
+	Step 4. and create individual tickets for the filtered ticket objects.
+
+Algorithm for Task 2:
+-----------------------------
+	Step 1. After removing every ticket from the Document.
+	Step 2. You can access 'ticketsArr' array,
+	Step 3. and create individual tickets for all the ticket objects.
+
+Further, please focus on passing testcases to submit the problem successfully.
+
+
+Test Cases: 
+	-> Verify that clicking on lightpink color box is working.
+	-> Verify that clicking on lightgreen color box is working.
+	-> Verify that clicking on lightblue color box is working.
+	-> Verify that clicking on black color box is working.
+	-> Verify that double clicking on any of the color box is working.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+    </div>
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-cont">
+            <div class="ticket-color"></div>
+            <div class="ticket-id">id 1</div>
+            <div class="task-area"> this  is task 1</div>
+            <div class="ticket-lock">
+              <i class="fa-solid fa-lock"></i>
+           </div> -->
+    </div>
+    </div>
+    <!-- MODAL - Ticket generator window -->
+    <div class="modal-cont">
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+       </textarea>
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const toolboxRef = document.querySelectorAll('.toolbox-priority-cont .color');
+        const mainContRef = document.querySelector('.main-cont');
+        toolboxRef.forEach(ele =>{
+            ele.addEventListener('click', e => {
+                const color = e.target.classList[0];
+                removeTasks();
+                removeSelection();
+                ticketsArr.forEach(function(ticket) {
+                    if(color === ticket.ticketColor)
+                        createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID);
+                });
+                e.target.classList.add('active');
+            })
+            ele.addEventListener('dblclick', e => {
+                removeTasks();
+                ticketsArr.forEach(function(ticket) {
+                createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID);
+                });
+            })
+        })
+        function removeSelection(){
+            toolboxRef.forEach(ele =>{
+                ele.classList.remove('active');
+            })
+        }
+        function removeTasks(){
+            mainContRef.innerHTML="";
+        }
+    </script>
+</body>
+</html>
