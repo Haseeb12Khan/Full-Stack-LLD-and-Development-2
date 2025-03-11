@@ -24,12 +24,11 @@ Test Cases:
 	-> Verify that .main-cont has correct CSS
 	-> Verify that .ticket-cont has correct CSS
 	-> Verify that .ticket-id has correct CSS
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +54,6 @@ Test Cases:
         }
     </style>
 </head>
-
 <body>
     <div class="main-cont">
         <div class="ticket-cont">
@@ -65,5 +63,4 @@ Test Cases:
         </div>
     </div>
 </body>
-
 </html>
