@@ -31,12 +31,11 @@ Test Cases:
 	-> Verify that .toolbox-priority-cont has correct CSS
 	-> Verify that .action-btn-cont has correct CSS
 	-> Verify that .action-btn-cont > * has correct CSS
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +65,6 @@ Test Cases:
         }
     </style>
 </head>
-
 <body>
     <div class="toolbox-cont">
         <div class="toolbox-priority-cont">
@@ -75,7 +73,6 @@ Test Cases:
             <div class="lightblue color"></div>
             <div class="black color"></div>
         </div>
-
         <div class="action-btn-cont">
             <div class="add-btn">
                 <img src="plus-logo.png" alt="color-logo" height="50%">
@@ -86,5 +83,4 @@ Test Cases:
         </div>
     </div>
 </body>
-
 </html>
