@@ -1,0 +1,279 @@
+				QUESTION
+
+Write a JavaScript program in the script.js file to:
+
+Create all the ticket's UI, based on the data present in ticketsDB in localstorage
+
+This question is a succession to the question, "Kanban Q5: Automate Ticket Creation from Input"
+
+You have been provided the boilerplate code that handles the creation of a ticket in UI,
+
+You need to add new code to the area marked in the script.js file to ensure that a ticket is created for all the data present in ticketsDB.
+
+Hint:	You need to store the values in Storage Object in an array, with the help of getItem() and JSON.parse() methods.
+	For each value (object) in the array, create a corresponding ticket in the UI.
+
+You can visit the "Kanban Q5: Automate Ticket Creation from Input" question again to get better idea of the boilerplate code.
+
+Further, please focus on passing testcases to submit the problem successfully.
+
+Test Cases:
+	-> Verify that the tickets are created in the UI based on the values in the ticketsDB
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+    <script defer>
+        let ticket = [{
+                ticketTask: "This is task 1 (lightgreen)",
+                ticketColor: "lightgreen",
+                ticketID: "dGSUFjfiq",
+            },
+            {
+                ticketTask: "This is task 2 (black)",
+                ticketColor: "black",
+                ticketID: "ay8dQS0o1",
+            },
+            {
+                ticketTask: "This is task 3 (lightblue)",
+                ticketColor: "lightblue",
+                ticketID: "fOqBFgQtx",
+            },
+            {
+                ticketTask: "This is task 4 (lightpink)",
+                ticketColor: "lightpink",
+                ticketID: "fOqBFgQtx",
+            },
+        ];
+
+        localStorage.setItem("ticketsDB", JSON.stringify(ticket));
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+script.css
+---------------------------------
+
+if(localStorage.getItem('ticketsDB')){
+  let stringfiedArr = localStorage.getItem('ticketsDB');
+  let Arr = JSON.parse(stringfiedArr);
+  for(let i=0;i<Arr.length;i++) {
+    let ticketObj = Arr[i];
+    createTicket(ticketObj.ticketTask,ticketObj.ticketColor,ticketObj.ticketID)
+  }
+}
+
+// ADDING TICKET TO DOM
+function createTicket(ticketTask, ticketColor, ticketID) {
+  let id = ticketID || shortid();
+  let ticketCont = document.createElement("div");
+  ticketCont.setAttribute("class", "ticket-cont");
+
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>`;
+
+  let mainCont = document.querySelector(".main-cont");
+  mainCont.append(ticketCont);
+}
+
+
+style.css
+-----------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont>* {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex
+}
+
+.action-btn-cont>* {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  font-size: 2rem;
+  align-items: center;
+  color: white;
+}
+
+.action-btn-cont:hover {
+  cursor: pointer;
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.black {
+  background-color: black;
+}
+
+.modal-cont {
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  display: none;
+
+}
+
+.textArea-cont {
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.priority-colors-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+}
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.ticket-cont {
+  height: 12rem;
+  width: 15rem;
+  background-color: coral;
+}
+
+.ticket-color {
+  height: 1rem;
+}
+
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.ticket-lock,
+.ticket-unlock {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+}
+
+.ticket-cont button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: large;
+  border: 2px double #dfe4ea;
+}
+
+.ticket-cont button:hover {
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #4BB543;
+}
+
+.toolbox-priority-cont>*:hover {
+  background-color: #485460;
+}
+
+.active {
+  border: 5px solid coral;
+}

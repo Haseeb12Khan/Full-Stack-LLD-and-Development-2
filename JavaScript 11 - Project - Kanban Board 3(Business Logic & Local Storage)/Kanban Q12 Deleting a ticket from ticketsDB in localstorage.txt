@@ -1,0 +1,316 @@
+				QUESTION
+
+Write a JavaScript program in the script.js file to:
+
+To update the ticketsArr and ticketsDB Storage Object in the localstorage.
+
+This question is a succession to the question, "Kanban Q8: Button to Delete Ticket from UI"
+
+You have been provided the boilerplate code that handles the deletion of the ticket from UI,
+
+You need to add new code to the area marked in the script.js file to ensure the task to update ticketsDB in localstorage.
+
+Hint: 	You need to write a function first to get the index of the ticket being deleted by matching the ids,
+	then use this index to delete the item from the ticketArr and then update the ticketsDB with the updated array after stringifying it.
+
+You can visit the "Kanban Q8: Button to Delete Ticket from UI" question again to get better idea of the boilerplate code.
+
+Further, please focus on passing testcases to submit the problem successfully.
+
+Test Cases:
+	-> Verify that deleting the ticket from UI, also deletes it from the ticketsDB in localstorage
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+    <script src="ticketGeneration.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+ticketGeneration.js
+-----------------------------------
+
+let ticketsArr = [
+  {
+    ticketTask: "This is task 1 (lightgreen)",
+    ticketColor: "lightgreen",
+    ticketID: "dGSUFjfiq",
+  },
+  {
+    ticketTask: "This is task 2 (black)",
+    ticketColor: "black",
+    ticketID: "ay8dQS0o1",
+  },
+  {
+    ticketTask: "This is task 3 (lightblue)",
+    ticketColor: "lightblue",
+    ticketID: "fOqBFgQtx",
+  },
+  {
+    ticketTask: "This is task 4 (lightpink)",
+    ticketColor: "lightpink",
+    ticketID: "fOqBFgQtx",
+  },
+];
+
+// CALLING createTicket() function for each value in ticketsArr
+ticketsArr.forEach(function (ticket) {
+  createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID);
+});
+
+// ADDING TICKET TO DOM
+function createTicket(ticketTask, ticketColor, ticketID) {
+  let id = ticketID || shortid();
+  let ticketCont = document.createElement("div");
+  ticketCont.setAttribute("class", "ticket-cont");
+
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>`;
+
+  let mainCont = document.querySelector(".main-cont");
+  mainCont.append(ticketCont);
+  localStorage.setItem("ticketsDB", JSON.stringify(ticketsArr));
+}
+
+
+script.js
+-----------------------------
+
+// FETCHING ALL THE TICKET CONTAINERS IN AN ARRAY
+let ticketContArr = document.querySelectorAll(".ticket-cont");
+let removeBtn = document.querySelector(".remove-btn");
+
+let removeFlag = false;
+
+// REMOVE BUTTON HANDLES removeFlag and creates ALERT
+removeBtn.addEventListener("click", function () {
+  removeFlag = !removeFlag;
+
+  if (removeFlag === true) {
+    alert("delete button has been activated");
+    removeBtn.style.backgroundColor = "red";
+  } else {
+    removeBtn.style.backgroundColor = "inherit";
+  }
+});
+
+// TRAVERSING THROUGH THAT ARRAY
+for (let i = 0; i < ticketContArr.length; i++) {
+  // ADDING CLICK EVENTLISTENER TO THE ICON
+  ticketContArr[i].addEventListener("click", (e) => {
+    if (!removeFlag) return;
+
+    ticketContArr[i].remove(); // ui Removal
+
+    let ticketIdElement = ticketContArr[i].querySelector(".ticket-id");
+    let ticketIdfromDom = ticketIdElement.textContent;
+    let ticketsDB = JSON.parse(localStorage.getItem("ticketsDB")) || [];
+    let updatedTicketsDB = ticketsDB.filter(item => item.ticketID !== ticketIdfromDom);
+    localStorage.setItem("ticketsDB", JSON.stringify(updatedTicketsDB));    
+  });
+} 
+
+
+style.css
+----------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont>* {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex
+}
+
+.action-btn-cont>* {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  font-size: 2rem;
+  align-items: center;
+  color: white;
+}
+
+.action-btn-cont:hover {
+  cursor: pointer;
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.black {
+  background-color: black;
+}
+
+.modal-cont {
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  display: none;
+
+}
+
+.textArea-cont {
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.priority-colors-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+}
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.ticket-cont {
+  height: 12rem;
+  width: 15rem;
+  background-color: coral;
+}
+
+.ticket-color {
+  height: 1rem;
+}
+
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.ticket-lock,
+.ticket-unlock {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+}
+
+.ticket-cont button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: large;
+  border: 2px double #dfe4ea;
+}
+
+.ticket-cont button:hover {
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #4BB543;
+}
+
+.toolbox-priority-cont>*:hover {
+  background-color: #485460;
+}
+
+.active {
+  border: 5px solid coral;
+}
