@@ -19,7 +19,7 @@ Further, please focus on passing testcases to submit the problem successfully.
 
 Test Cases:
 	-> Verify that the tickets are created in the UI based on the values in the ticketsDB
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
