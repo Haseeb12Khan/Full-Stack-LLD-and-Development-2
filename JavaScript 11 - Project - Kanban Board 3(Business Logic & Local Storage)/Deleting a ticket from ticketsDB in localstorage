@@ -19,7 +19,7 @@ Further, please focus on passing testcases to submit the problem successfully.
 
 Test Cases:
 	-> Verify that deleting the ticket from UI, also deletes it from the ticketsDB in localstorage
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
