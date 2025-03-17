@@ -66,7 +66,7 @@ Test Cases:
 	-> Verify that clicking on inactive delete button turns the background color of the div.remove-btn to 'inherit'.
 	-> Verify that when the delete button is active, clicking on a ticket removes it from UI.
 	-> Verify that when the delete button is inactive, clicking on a ticket does nothing.
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
