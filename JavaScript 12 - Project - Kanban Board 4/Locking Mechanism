@@ -52,7 +52,7 @@ Test Cases:
 	-> Verify that clicking on unlock button changes it to lock button.
 	-> Verify that when the state is locked, the task is uneditable.
 	-> Verify that when the state is unlocked, the task is editable.
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
