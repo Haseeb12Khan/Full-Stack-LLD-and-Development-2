@@ -1,0 +1,368 @@
+				QUESTION
+
+Write a JavaScript program in the <script> tag to:
+
+Implement the delete feature for all the tickets present.
+
+The feature should work as follows:
+
+1. When the Delete Button (div.remove-btn), which is a cross button in the tool bar, is clicked:
+	1.1. It gives an alert that the 'delete button has been activated'
+	1.2. This means that now if any ticket is clicked, it gets removed from the UI (User Interface)
+	1.3. The background color of the div with class 'remove-btn' turns 'red' when the delete button is activated.
+
+2. When the Delete Button is clicked again:
+	2.1. It deactivates the delete button
+	2.2. This means now clicking on a ticket would no longer remove it from the UI.
+	2.3. The background color of the div with class 'remove-btn' turns back to inherited bgcolor from parent.
+
+Important information and algorithms:
+
+1. How to keep an account of states associated with delete button?
+	
+The delete button is in the following structure:
+	<div class="action-btn-cont">
+	<div class="remove-btn">
+	<img src="cross-logo.png" alt="cross-logo" height="50%">
+	</div>
+	</div>
+
+Here, div.action-btn-cont is the toolbox containing div.remove-btn with an image of cross inscribed in it.
+So when the the div.remove-btn is clicked, it should make the delete feature work.
+
+To know whether the delete button is activated or not, you can utlise a global boolean variable working as a Flag.
+
+Algorithm 1 to set states:
+	Whenever delete button is clicked:
+	If the Flag says the delete button was inactive:
+		1. negate the Flag value.
+		2. create an Alert that says 'delete button has been activated'
+		3. set the background color of div.remove-btn to 'red'
+
+	If the Flag says the delete button was active:
+		1. negate the Flag value.
+		2. set the background color of div.remove-btn to 'inherit'
+
+2. How to remove a ticket from the UI?
+
+	Algorithm 2 to remove a ticket:
+		For each of the ticket, add an eventListener of 'click' such that whenever a ticket is clicked,
+		it checks the Flag value determing the activation state of the delete button.
+
+		If the Flag says the delete button is inactive:
+		1. Don't do anything and return back.
+
+		If the Flag says the delete button is active:
+		1. Use the Element.remove() function to remove the ticket from the UI.
+
+As a bonus: After performing the above steps, you can try to update the global ticketArr array by removing the ticket data from it as well.
+
+Further, please focus on passing test cases to submit the problem successfully.
+
+
+Test Cases: 
+	-> Verify that clicking on inactive delete button gives out an alert saying 'delete button has been activated'
+	-> Verify that clicking on inactive delete button turns the background color of the div.remove-btn to 'red'.
+	-> Verify that clicking on inactive delete button turns the background color of the div.remove-btn to 'inherit'.
+	-> Verify that when the delete button is active, clicking on a ticket removes it from UI.
+	-> Verify that when the delete button is inactive, clicking on a ticket does nothing.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+    <script>
+        let removeBtn = document.querySelector(".remove-btn");
+        let removeFlag = false;
+        let ticket_container = document.querySelectorAll(".ticket-cont");
+        removeBtn.addEventListener("click",function() {
+            removeFlag = !removeFlag;
+            if(removeFlag) {
+                alert("delete button has been activated");
+                removeBtn.style.backgroundColor = "red";
+            }
+            else {
+                removeBtn.style.backgroundColor = "inherit";
+            }
+        });
+        ticket_container.forEach(function(element) {
+            element.addEventListener("click",function() {
+                if(removeFlag) {
+                    element.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+script.js
+---------------------------------
+
+// WARNING: DO NOT EDIT THE BELOW CODE OR DATA
+
+// DUMMY DATA FOR THE COLORS
+let ticketsArr = [
+  {
+    ticketTask: "This is task 1 (lightgreen)",
+    ticketColor: "lightgreen",
+    ticketID: "dGSUFjfiq",
+  },
+  {
+    ticketTask: "This is task 2 (black)",
+    ticketColor: "black",
+    ticketID: "ay8dQS0o1",
+  },
+  {
+    ticketTask: "This is task 3 (lightblue)",
+    ticketColor: "lightblue",
+    ticketID: "fOqBFgQtx",
+  },
+  {
+    ticketTask: "This is task 4 (lightpink)",
+    ticketColor: "lightpink",
+    ticketID: "fOqBFgQtx",
+  },
+];
+
+// CALLING createTicket() function for each value in ticketsArr
+ticketsArr.forEach(function (ticket) {
+  createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID);
+});
+
+// ADDING TICKET TO DOM
+function createTicket(ticketTask, ticketColor, ticketID) {
+  let id = ticketID || shortid();
+  let ticketCont = document.createElement("div");
+  ticketCont.setAttribute("class", "ticket-cont");
+
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>`;
+
+  let mainCont = document.querySelector(".main-cont");
+  mainCont.append(ticketCont);
+
+  if (!ticketID) {
+    ticketsArr.push({ ticketTask, ticketColor, ticketID: id });
+    localStorage.setItem("tickets", JSON.stringify(ticketsArr));
+  }
+}
+
+
+
+style.css
+-------------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont>* {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex
+}
+
+.action-btn-cont>* {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  font-size: 2rem;
+  align-items: center;
+  color: white;
+}
+
+.action-btn-cont:hover {
+  cursor: pointer;
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.black {
+  background-color: black;
+}
+
+
+.modal-cont {
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  display: none;
+
+}
+
+
+.textArea-cont {
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+
+.priority-colors-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+}
+
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+
+.ticket-cont {
+  height: 12rem;
+  width: 15rem;
+  background-color: coral;
+}
+
+
+.ticket-color {
+  height: 1rem;
+}
+
+
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.ticket-lock,
+.ticket-unlock {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+}
+
+.ticket-cont button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: large;
+  border: 2px double #dfe4ea;
+}
+
+.ticket-cont button:hover {
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #4BB543;
+}
+
+
+.toolbox-priority-cont>*:hover {
+  background-color: #485460;
+}
+
+
+.active {
+  border: 5px solid coral;
+}
+

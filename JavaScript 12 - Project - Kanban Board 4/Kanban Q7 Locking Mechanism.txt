@@ -1,0 +1,338 @@
+				QUESTION
+
+Write a JavaScript program in the <script> tag to:
+
+Implement the locking mechanism feature for all the tickets present.
+
+The feature works under two different states of locked and unlocked.
+
+State 1. When the ticket is locked and clicked:
+	1. locked button changes to unlocked button.
+	2. task-area is set to editable.
+
+State 2. When the ticket is unlocked and clicked:
+	1. unlocked button changes to locked button.
+	2. task-area is set to uneditable.
+
+Important information and algorithms:
+
+1. How to change the buttons, editability of tasks and keep an account of the state?
+	
+You are provided a single button inside the div.ticket-lock, and the structure of the ticket is as follows:
+	<div class="ticket-color ${ticketColor}"></div>
+	<div class="ticket-id">${id}</div>
+	<div class="task-area">${ticketTask}</div>
+	<div class="ticket-lock">
+	<button>Locked</button>
+	</div>
+
+Based on these, below is the algorithm to be followed.
+
+Algorithm:
+	You can to utilise the class (will be ticket-lock or ticket-unlock) of the parent div of button to find the current state, if its state 1 (locked) or state 2 (unlocked).
+	Then whenever the button is clicked:
+	
+	In state 1, you need to:
+		1. change the class of 'ticket-lock' to 'ticket-unlock'
+		2. change the innerText of button from 'Locked' to 'Unlocked'
+		3. set the contenteditable attribute of task-area to true
+
+	In state 2, you need to:
+		1. change the class of 'ticket-unlock' to 'ticket-lock'
+		2. change the innerText of button from 'Unlocked' to 'Locked'
+		3. set the contenteditable attribute of task-area to false
+
+After performing the above steps, it is also important to update the global ticketArr array with the new ticketTask.
+
+Further, please focus on passing test cases to submit the problem successfully.
+
+
+Test Cases:
+	-> Verify that clicking on lock button changes it to unlock button.
+	-> Verify that clicking on unlock button changes it to lock button.
+	-> Verify that when the state is locked, the task is uneditable.
+	-> Verify that when the state is unlocked, the task is editable.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+---------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>
+       <div class="ticket-lock">
+       <button>Locked</button>
+      </div> -->
+    </div>
+    </div>
+
+    <!-- MODAL - Ticket generator window -->
+    <div class="modal-cont">
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+	</textarea>
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+    </div>
+    <script src="script.js">
+    </script>
+    <script>
+        document.querySelectorAll(".main-cont button").forEach(btn => {
+            btn.addEventListener("click",e => {
+                const taskArea = e.target.parentNode.parentNode.querySelector(".task-area");
+                const flag = !(taskArea.getAttribute("contenteditable") === "true");
+                taskArea.setAttribute("contenteditable",`${flag}`);
+                e.target.textContent = flag ? "Unlocked" : "Locked";
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+script.js
+-----------------------------
+
+let ticketsArr = [
+  {
+    ticketTask: "This is task 1 (lightgreen)",
+    ticketColor: "lightgreen",
+    ticketID: "dGSUFjfiq",
+  },
+  {
+    ticketTask: "This is task 2 (black)",
+    ticketColor: "black",
+    ticketID: "ay8dQS0o1",
+  },
+  {
+    ticketTask: "This is task 3 (lightblue)",
+    ticketColor: "lightblue",
+    ticketID: "fOqBFgQtx",
+  },
+  {
+    ticketTask: "This is task 4 (lightpink)",
+    ticketColor: "lightpink",
+    ticketID: "fOqBFgQtx",
+  },
+];
+
+// CALLING createTicket() function for each value in ticketsArr
+ticketsArr.forEach(function (ticket) {
+  createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID);
+});
+
+// ADDING TICKET TO DOM
+function createTicket(ticketTask, ticketColor, ticketID) {
+  let id = ticketID || shortid();
+  let ticketCont = document.createElement("div");
+  ticketCont.setAttribute("class", "ticket-cont");
+
+  ticketCont.innerHTML = `<div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div>
+       <div class="ticket-lock">
+       <button>Locked</button>
+      </div>`;
+
+  let mainCont = document.querySelector(".main-cont");
+  mainCont.append(ticketCont);
+
+  if (!ticketID) {
+    ticketsArr.push({ ticketTask, ticketColor, ticketID: id });
+    localStorage.setItem("tickets", JSON.stringify(ticketsArr));
+  }
+}
+
+
+style.css
+--------------------
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont>* {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex
+}
+
+.action-btn-cont>* {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  font-size: 2rem;
+  align-items: center;
+  color: white;
+
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.black {
+  background-color: black;
+}
+
+.modal-cont {
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  display: none;
+
+}
+
+.textArea-cont {
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.priority-colors-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+}
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.ticket-cont {
+  height: 12rem;
+  width: 15rem;
+  background-color: coral;
+}
+
+.ticket-color {
+  height: 1rem;
+}
+
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.ticket-lock,
+.ticket-unlock {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+}
+
+.ticket-cont button {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  color: white;
+  font-size: large;
+  border: 2px double #dfe4ea;
+}
+
+.ticket-cont button:hover {
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #4BB543;
+}
+
+.remove-btn:hover {
+  background-color: #4BB543;
+}
+
+.toolbox-priority-cont>*:hover {
+  background-color: #485460;
+}
+
+.active {
+  border: 5px solid coral;
+}

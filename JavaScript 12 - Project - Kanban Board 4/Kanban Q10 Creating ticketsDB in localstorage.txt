@@ -1,0 +1,252 @@
+				QUESTION
+
+You need to write JS program to create a Storage Object names 'ticketsDB' in Browser's localstorage.
+
+The localStorage read-only property of the window interface allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions. 
+
+The following snippet accesses the current domain's local Storage object and adds a data item to it using Storage.setItem().
+	localStorage.setItem("myCat", "Tom");
+
+You need to use stringify the Array of Objects 'ticketsArr' provided to you in script.js file.
+
+You can use JSON.stringify() method to acheive this.
+
+Test Cases:
+	-> Verify that Storage Object 'ticketsDB' is created in localstorage.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+-----------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="boilerplate.css">
+</head>
+<body>
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="add-btn">
+                <img src="plus-logo.png" alt="color-logo" height="50%">
+            </div>
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-cont">
+        <div class="ticket-cont">
+            <div class="ticket-color lightpink"></div>
+            <div class="ticket-id">#0</div>
+            <div class="task-area"> this is task 1</div>
+            <div class="ticket-lock">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-cont">
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+        </textarea>
+
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+script.js
+------------------------------
+
+let ticketsArr = [
+  {
+    ticketTask: "Task 1",
+    ticketColor: "lightpink",
+    ticketID: 0,
+  },
+];
+
+localStorage.setItem("ticketsDB",JSON.stringify(ticketsArr));
+const storedTickets = localStorage.getItem("ticketsDB");
+if(storedTickets) {
+    console.log("Storage object 'ticketsDB' created successfully:", JSON.parse(storedTickets));
+}
+else {
+    console.error("Failed to create 'ticketsDB' in localStorage.");
+}
+
+
+
+boilerplate.css
+-----------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont>* {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex
+}
+
+.action-btn-cont>* {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  font-size: 2rem;
+  align-items: center;
+  color: white;
+
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.black {
+  background-color: black;
+}
+
+.modal-cont {
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  display: none;
+}
+
+.textArea-cont {
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize: none;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.priority-colors-container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+}
+
+.main-cont {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.ticket-cont {
+  height: 12rem;
+  width: 15rem;
+  background-color: coral;
+}
+
+.ticket-color {
+  height: 1rem;
+}
+
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.ticket-lock {
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+
+}
+
+.add-btn:hover {
+  background-color: #4BB543;
+}
+
+.remove-btn:hover {
+  background-color: #4BB543;
+}
+
+.toolbox-priority-cont>*:hover {
+  background-color: #485460;
+}
+
+.active {
+  border: 5px solid coral;
+}
