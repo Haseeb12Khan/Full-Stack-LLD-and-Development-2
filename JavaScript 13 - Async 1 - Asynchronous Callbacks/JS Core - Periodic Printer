@@ -18,7 +18,7 @@ Output:	Prints "This is callback" at every 1000ms until terminated by backend us
 
 Test Cases:
 	-> Test Case => callback function is called every timeInterval ms until terminated using clearInterval.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
