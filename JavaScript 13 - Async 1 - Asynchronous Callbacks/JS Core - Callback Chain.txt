@@ -1,0 +1,50 @@
+				QUESTION
+
+Write a function callbackChain that takes an array of functions as callbacks. 
+
+The functions should be executed one after another in the order they are provided, with a delay of 500 milliseconds between each execution.
+
+You need to implement the callbackChain function, which will execute a sequence of callback functions one after another with a delay of 500 milliseconds between each execution.
+
+		function callbackChain(callbacks)
+
+Example:	callbackChain([
+    			() => console.log("First callback"),
+    			() => console.log("Second callback"),
+    			() => console.log("Third callback")
+		]);
+
+Output:	Prints all three messages at 500 ms delay
+
+Test Cases:
+	-> Test Case => All the callback functions are executed with a 500ms delay.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script id='solution' defer>
+        function callbackChain(callbacks) {
+            function executeCallback(index) {
+                if(index < callbacks.length) {
+                    callbacks[index]();
+                    setTimeout(function() {
+                        executeCallback(index + 1);
+                    },500);
+                }
+            }
+            executeCallback(0);
+        }
+    </script>
+</body>
+
+</html>
