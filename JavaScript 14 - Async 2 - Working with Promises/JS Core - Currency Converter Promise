@@ -16,7 +16,7 @@ Test Cases:
 2. convertCurrency(50, 'USD', 'JPY')
     .then(result => console.log(`Converted amount: ${result} JPY`))
     .catch(error => console.error(error)); // Expected output: "Error converting currency: Invalid currency"
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 const exchangeRates = {
