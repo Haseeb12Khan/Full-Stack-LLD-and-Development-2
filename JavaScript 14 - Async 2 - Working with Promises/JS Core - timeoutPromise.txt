@@ -1,0 +1,46 @@
+				QUESTION
+
+Write a function timeoutPromise that takes a delay time in milliseconds and returns a Promise. 
+
+The Promise should resolve after the specified delay.
+
+You need to implement the timeoutPromise function, which returns a Promise. 
+
+The Promise should resolve after the specified delay time.
+
+		function timeoutPromise(delay) 
+
+Test Cases:
+1. timeoutPromise(2000)
+    .then(result => console.log(result)) // Expected output after 2000ms: "Promise resolved after 2000 milliseconds"
+    .catch(error => console.error(error));
+
+2. Test Case 1 => If promise is resolved in 1000ms delay.
+
+3. Test Case 2 => If promise is resolved in 500ms delay.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script id='solution' defer>
+        function timeoutPromise(delay) {
+            return new Promise(function(resolve,reject) {
+                setTimeout(function() {
+                    resolve(`Promise resolved after ${delay} milliseconds`);
+                }, delay);
+            });
+        }
+    </script>
+</body>
+
+</html>

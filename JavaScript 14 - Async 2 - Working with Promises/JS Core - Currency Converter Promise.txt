@@ -1,0 +1,42 @@
+				QUESTION
+
+Write a function convertCurrency that takes an amount, source currency, and target currency, and returns a Promise. 
+
+The Promise should resolve with the converted amount if the conversion is successful; otherwise, it should reject with an error message.
+
+You need to implement the convertCurrency function, which returns a Promise. 
+
+The Promise should resolve with the converted amount if the conversion is successful, and reject with an error message if there is any issue.
+
+Test Cases:
+1. convertCurrency(100, 'USD', 'EUR')
+    .then(result => console.log(`Converted amount: ${result} EUR`))
+    .catch(error => console.error(error));
+
+2. convertCurrency(50, 'USD', 'JPY')
+    .then(result => console.log(`Converted amount: ${result} JPY`))
+    .catch(error => console.error(error)); // Expected output: "Error converting currency: Invalid currency"
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+const exchangeRates = {
+    'USD': 1.0,
+    'EUR': 0.85,
+    'GBP': 0.75,
+};
+
+function convertCurrency(amount, sourceCurrency, targetCurrency) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            const fromRate = exchangeRates[sourceCurrency];
+            const toRate = exchangeRates[targetCurrency];
+            const ans = amount * fromRate * toRate;
+            if(ans > 0) {
+                resolve(ans.toFixed(2));
+            }
+            else {
+                reject('Error converting currency: Invalid currency');
+            }
+        },500);
+    });
+}
