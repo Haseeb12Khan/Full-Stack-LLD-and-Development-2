@@ -17,7 +17,7 @@ NOTE: You have to make the accordion-content visible using the display: block pr
 Test Cases:
 	-> Accordion content visibility toggle on first section
 	-> Clicking an accordion button should hide its content if it's visible.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
@@ -61,7 +61,6 @@ index.html
 </html>
 
 
-
 style.css
 ---------------------------------------------
 
@@ -87,7 +86,6 @@ style.css
     border: 1px solid #ddd;
     background-color: #f9f9f9;
 }
-
 
 
 script.js
