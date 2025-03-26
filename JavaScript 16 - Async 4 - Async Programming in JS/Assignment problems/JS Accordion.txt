@@ -1,0 +1,110 @@
+				QUESTION
+
+Create an interactive accordion component using HTML, CSS, and JavaScript. 
+
+An accordion is a vertically stacked list of items, each with a header and a content section. 
+
+When a user clicks on the header, the associated content section should either collapse or expand.
+
+Your task is to implement the JavaScript functionality to make the accordion work as expected. 
+
+Each accordion header is a button that, when clicked, should toggle the display of the content section. 
+
+Initially, all content sections should be hidden.
+
+NOTE: You have to make the accordion-content visible using the display: block property and hidden using the display: none property.
+
+Test Cases:
+	-> Accordion content visibility toggle on first section
+	-> Clicking an accordion button should hide its content if it's visible.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+----------------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Accordion Example</title>
+</head>
+
+<body>
+    <div class="accordion">
+        <div class="accordion-item">
+            <button class="accordion-button">Section 1</button>
+            <div class="accordion-content">
+                <p>This is the content for section 1.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">Section 2</button>
+            <div class="accordion-content">
+                <p>This is the content for section 2.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-button">Section 3</button>
+            <div class="accordion-content">
+                <p>This is the content for section 3.</p>
+            </div>
+        </div>
+        <!-- Add more sections as needed -->
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+style.css
+---------------------------------------------
+
+.accordion {
+    width: 300px;
+    margin: 20px auto;
+}
+
+.accordion-button {
+    background-color: #0074d9;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accordion-content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+
+
+script.js
+----------------------------------------------------
+
+const accordion = document.querySelector('.accordion');
+let flag = false;
+
+accordion.addEventListener('click',(ele) => {
+    if(ele.target.classList.contains('accordion-button')) {
+        if(flag) {
+            flag = false;
+            ele.target.nextElementSibling.style.display = 'none';
+        }
+        else {
+            flag = true;
+            ele.target.nextElementSibling.style.display = 'block';
+        }
+    }
+});
