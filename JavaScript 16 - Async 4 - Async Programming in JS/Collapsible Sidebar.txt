@@ -1,0 +1,127 @@
+				QUESTION
+
+Designers and developers often incorporate collapsible sidebars in web applications to make efficient use of screen real estate. 
+
+This feature is particularly useful for applications with numerous options or tools that users don't need to access all the time.
+
+Your task is to implement a collapsible sidebar for a web application.
+
+Requirements:
+	1. You have two main div elements provided in the HTML: a sidebar (#sidebar) and a main content area (#main-content).
+	2. The sidebar should start fully expanded with a width of 250px. The main content should be displayed to the right, filling the rest of the viewport width.
+	3. Include a button (#toggle-button) within the sidebar that will toggle its expanded and collapsed states.
+	4. The sidebar should collapse to a width of 80px when the toggle button is clicked and expand back to 250px when clicked again.
+	5. The main content area should adjust its position so it's always visible and using the available space next to the sidebar (it should have a padding of 80px).
+
+Apply CSS to enhance the visual appearance according to the specifications given.
+
+Specifications:
+	1. The sidebar should have a background color of #34495e and contain white text. It should also have a padding of 15px 30px
+	2. The toggle button should have a background color of #e74c3c, which changes to #c0392b when hovered over.
+	3. The main content area should have a background color of #f1c40f.
+
+Instructions for Implementation:
+	1. Write JavaScript code in script.js to add the toggle functionality to the sidebar.
+	2. Write CSS in style.css to style the sidebar, the toggle button, and the main content area according to the given specifications.
+	3. Ensure the main content area adjusts its position dynamically when the sidebar is toggled.
+
+Example Behavior:
+	1. Initially, the sidebar is fully expanded with a width of 250px.
+	2. Clicking the #toggle-button collapses the sidebar to 80px, allowing the main content area to use the additional space.
+	3. Clicking the #toggle-button again expands the sidebar back to 250px.
+
+Test Cases:
+	-> Verify if hover styling works
+	-> Verify Sidebar and Content Styling
+	-> Verify if Expand and Close Sidebar works
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Collapsible Sidebar Challenge</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        <button id="toggle-button">Toggle Sidebar</button>
+        <p>Sidebar Content</p>
+    </div>
+    <div id="main-content">Main Content</div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+style.css
+-----------------------------------
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    background-color: #34495e;
+    padding: 15px 30px;
+    height: 100vh;
+    color: #ffffff;
+    transition: 0.3s ease-in;
+}
+
+.sidebar {
+    width: 80px !important;
+}
+
+#toggle-button {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+}
+
+#toggle-button:hover {
+    background-color: #c0392b;
+}
+
+#main-content {
+    width: auto;
+    background-color: #f1c40f;
+    margin-left: 250px;
+    height: 100vh;
+    padding: 80px;
+    transition: 0.3s ease-in;
+}
+
+.main-content {
+    margin-left: 80px !important;
+}
+
+
+script.js
+---------------------------------
+
+const sidebar = document.querySelector("#sidebar");
+const btn = document.querySelector("#toggle-button");
+const mainContent = document.querySelector("#main-content");
+
+btn.addEventListener("click",() => {
+    sidebar.classList.toggle("sidebar");
+    mainContent.classList.toggle("main-content");
+});
