@@ -22,7 +22,7 @@ Test Cases:
 	-> Verify that the focus movies to the next input field whenever a single digit is entered.
 	-> Verify that when Backspace or Delete key is pressed, it removes the input from current field.
 	-> Verify that when Backspace or Delete key is pressed, the focus gets back to previous field.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
