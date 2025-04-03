@@ -36,7 +36,7 @@ Test Cases:
 	-> Verify that when mouse leaves, the color of stars beyond star point is changed to grey.
 	-> Verify that when clicked, the color of stars till target star is changed to yellow.
 	-> Verify that when clicked, the Rating Count (span#count) changes to the star point.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
