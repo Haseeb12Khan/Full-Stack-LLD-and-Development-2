@@ -1,0 +1,115 @@
+				QUESTION
+
+Write a JS program to make the given OTP input work properly.
+
+In the Document, you have div#inputs that contain 4 input fields with 'input' class.
+
+Here is how these inputs should work:
+	1. Each of the fields only takes a single-digit number as input.
+	2. When a number is entered, the focus moves to the next input field.
+	3. Pressing Backspace or Delete key removes the input of the current field, and the focus moves to the previous field.
+
+You can utilise methods like isNan(value), Element.focus(), Element.nextElementSibling and Element.previousElementSibling to make the above-mentioned features work.
+
+Use the above information to write the entire JS program in the script.js file or script tag.
+
+Refer to the test cases to further understand the criteria to submit the problem successfully.
+
+NOTE: HTML and CSS are handled for you, please don't change the structure of the document.
+
+Test Cases:
+	-> Verify that the input fields only take a number as valid input.
+	-> Verify that the focus movies to the next input field whenever a single digit is entered.
+	-> Verify that when Backspace or Delete key is pressed, it removes the input from current field.
+	-> Verify that when Backspace or Delete key is pressed, the focus gets back to previous field.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+index.html
+---------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="inputs" class="inputs">
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+style.css
+------------------------------------------
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.input {
+  width: 40px;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  margin: 0 10px;
+  text-align: center;
+  font-size: 36px;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.input:focus {
+  border-bottom: 3px solid orange;
+  outline: none;
+}
+
+.input:nth-child(1) {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+
+
+script.js
+-------------------------------------
+
+let all_input_ele=document.querySelectorAll('.input');
+
+for(let i=0;i<all_input_ele.length;i++){
+    all_input_ele[i].addEventListener('keyup',function (e){   
+        if(isNaN(e.target.value)){
+            e.target.value='';        
+        }
+        else if(e.key==='Backspace'||e.key==='Delete'){
+            e.target.value='';
+            if(e.target.previousElementSibling){
+                let prev_input_ele=e.target.previousElementSibling;
+                prev_input_ele.focus();
+            }
+        }
+        else{
+            if(e.target.nextElementSibling){
+                let next_input_ele=e.target.nextElementSibling;
+                next_input_ele.focus();
+            }
+        }  
+    })
+}
