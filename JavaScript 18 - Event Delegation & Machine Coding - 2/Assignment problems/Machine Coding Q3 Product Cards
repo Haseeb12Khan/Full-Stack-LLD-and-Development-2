@@ -71,7 +71,7 @@ Test Cases:
 	-> Verify that the cards hold correct category.
 	-> Verify that the cards hold correct rating count.
 	-> Verify that a card contains correct star rating. (number of empty and filled stars checked using class of span)
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 index.html
