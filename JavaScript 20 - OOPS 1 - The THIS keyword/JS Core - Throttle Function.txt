@@ -1,0 +1,70 @@
+				QUESTION
+
+Implement a Throttle Function in JavaScript.
+
+In this coding challenge, you will practice implementing a throttle function in JavaScript. 
+
+After you've learnt about throttling, this exercise will give you hands-on experience in creating a functional throttle utility.
+
+Instructions:
+--------------------------------------------------
+	1. You are provided with a partially completed function named throttle. Your task is to complete the implementation to create a functional throttle utility.
+	2. The throttle function should take two arguments: fn (the function to be throttled) and time (the time interval in milliseconds).
+	3. Test your throttle function with different time intervals and functions.
+
+Important Pointers:
+--------------------------------------------------
+	1. Throttling is useful in scenarios where you want to limit the frequency of a function's execution to a specified time interval.
+	2. Be sure to capture the function's context (this) and arguments inside the inner function.
+	3. Experiment with different functions and time intervals to see how the throttle function behaves.
+
+Function Signature and Test Case:
+--------------------------------------------------
+function throttle(fn, time) {
+}
+
+// Test Cases
+--------------------------------------------------
+const throttledFunc = throttle((value) => console.log(value), 200);
+
+throttledFunc("First call"); // Should log
+throttledFunc("Second call"); // Should not log
+
+
+Test Cases:
+	-> Checking in backend if the throttle function is working or not.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items Buy</title>
+</head>
+
+<body>
+    <p></p>
+    <script id="solution">
+        function throttle(fn, time) {
+            let lastTime = 0;
+            return function(...args) {
+                const now = Date.now();
+                if(now - lastTime >= time) {
+                    lastTime = now;
+                    fn(...args);
+                }
+            };
+        }
+
+        const throttledFunc = throttle((value) => console.log(value),200);
+        throttledFunc("First call");
+        throttledFunc("Second call");
+        setTimeout(() => throttledFunc("Third call"),250);
+        setTimeout(() => throttledFunc("Fourth call"),300);
+    </script>
+</body>
+
+</html>
