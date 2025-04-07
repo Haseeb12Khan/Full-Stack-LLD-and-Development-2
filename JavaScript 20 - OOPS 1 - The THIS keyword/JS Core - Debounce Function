@@ -35,7 +35,7 @@ debouncedFunc("Second call"); // Should cancel the previous and set a new timeou
 
 Test Cases:
 	-> Checking in backend if the debounce function is working or not.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
@@ -46,7 +46,6 @@ Test Cases:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items Buy</title>
 </head>
-
 <body>
     <p></p>
     <script id="solution">
@@ -70,5 +69,4 @@ Test Cases:
         setTimeout(testDebounce,400);
     </script>
 </body>
-
 </html>
