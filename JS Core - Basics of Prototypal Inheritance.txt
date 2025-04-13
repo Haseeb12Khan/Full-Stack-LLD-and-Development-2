@@ -1,0 +1,34 @@
+				QUESTION
+
+Create a simple JavaScript program to demonstrate prototypal inheritance.
+
+Define a constructor function Person that takes a name as a parameter and sets it as an instance property. 
+
+Then, create two instances of Person and add a method to the prototype that allows each person to introduce themselves.
+
+Test Cases:
+		// Constructor function for Person
+		function Person(name) {
+    			this.name = name;
+ 		}
+
+  		// Create person instances
+  		const person1 = new Person("John");
+  		const person2 = new Person("Jane");
+
+  		// Test cases
+  		console.log(person1.introduce()); // Output: Hi, I'm John.
+  		console.log(person2.introduce()); // Output: Hi, I'm Jane.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+function Person(name) {
+    this.name = name;
+}
+  
+Person.prototype.introduce = function() {
+    return "Hi, I'm " + this.name +".";
+}
+
+const person1 = new Person("John");
+const person2 = new Person("Jane");
