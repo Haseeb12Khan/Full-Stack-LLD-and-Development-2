@@ -1,0 +1,108 @@
+				QUESTION
+
+Implement an interactive UI that demonstrates event bubbling. 
+
+The application will contain nested elements: a box inside a container inside the body. 
+
+When a user clicks on the box, display the events triggered in the bubbling phase for the box, container, and body. Use JavaScript to handle the event listeners.
+
+Problem Description:
+-------------------------------
+	You are tasked to:
+	--------------------------------
+		-> Create an HTML structure with nested elements: body > div.container > div.box.
+		-> When clicking on the innermost box, the event should propagate through its parent container and up to the body.
+		-> Display messages showing which element's event listener is executed (in bubbling order).
+		-> The messages should be displayed in a div labeled #log.
+
+You will implement this using event bubbling and log the event's progress through the DOM hierarchy.
+
+Problem Hints:
+---------------------------------
+	-> Use addEventListener to attach event listeners to the body, .container, and .box.
+	-> The event.target property will indicate the element that was clicked.
+	-> Use the bubbling phase (default) to let events propagate from child to parent.
+	-> Update the #log div with the sequence of elements triggering their event listeners.
+
+Test Cases:
+---------------------------------
+	1. Click on the .box
+		Expected log: Event triggered on: box 
+			      Event triggered on: container 
+			      Event triggered on: BODY
+
+	2. Click on the .container but outside the .box
+		Expected log: Event triggered on: container 
+			      Event triggered on: BODY
+
+	3. Click on the body but outside the .container
+		Expected log: Event triggered on: BODY
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling Example</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 300px;
+        height: 300px;
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: coral;
+      }
+      #log {
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        width: 80%;
+        height: 100px;
+        overflow-y: auto;
+        background: #f7f7f7;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+    <div id="log"></div>
+
+    <script>
+      const logDiv = document.getElementById("log");
+      const box = document.querySelector(".box");
+      const container = document.querySelector(".container");
+      const body = document.body;
+
+      function logEvent(event) {
+        const elementName = event.currentTarget === body ? "BODY" : event.currentTarget.classList.contains("container") ? "container" : "box";
+        const p = document.createElement("p");
+        p.textContent = `Event triggered on: ${elementName}`;
+        logDiv.appendChild(p);
+      }
+
+      body.addEventListener("click",logEvent);
+      container.addEventListener("click",logEvent);
+      box.addEventListener("click",logEvent);
+    </script>
+  </body>
+</html>
