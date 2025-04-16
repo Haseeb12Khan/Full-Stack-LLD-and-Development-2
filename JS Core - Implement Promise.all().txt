@@ -1,0 +1,97 @@
+				QUESTION
+
+The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises.
+
+Could you write your own all() ? which should works the same as Promise.all()
+
+Note:
+	-> Do not use Promise.all() directly, it is not helping.
+	-> Function signature is given below, here promises parameter would contain an array of promises.
+		all(promises);
+
+Examples:
+---------------------------------
+Example 1:
+	let ans = "";
+	all([Promise.resolve(ans += `func1 `), Promise.resolve(ans += `func2 `), Promise.resolve(ans += `func3 `)])
+	console.log(ans);
+
+Output:	func1 func2 func3 
+
+
+Example 2:
+	let ans = "";
+	let func1 = () => {setTimeout(() => { ans += `setTimeout called for func1\n`}, 100)}
+	let func2 = () => {setTimeout(() => { ans += `setTimeout called for func2\n`}, 200)}
+	let func3 = () => {setTimeout(() => { ans += `setTimeout called for func3\n`}, 300)}
+
+	all([func1(), func2(), func3()])
+
+	setTimeout(() => {
+    		console.log(ans);
+	}, 500)
+
+Output:	setTimeout called for func1
+	setTimeout called for func2
+	setTimeout called for func3
+
+
+Example 3:
+	let i = 1;
+    	let ans = "";
+    	let func1 = () => {
+      		setTimeout(() => {
+        		ans += `setTimeout called for func${i++} \n `;
+      		}, Math.random * 100);
+    	};
+
+	all([func1(), func2(), func3()])
+
+	setTimeout(() => {
+    		console.log(ans);
+	}, 500)
+
+Output:	setTimeout called for func1
+	setTimeout called for func2
+	setTimeout called for func3
+
+
+Test Cases:
+	-> Test Case => Example 3 from the problem description is being utilised to test the code.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+				SOLUTION
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script id='solution' defer>
+        function all(promises) {
+            return new Promise((resolve,reject) => {
+                const results = [];
+                let completed = 0;
+                promises.forEach((p, index) => {
+                    Promise.resolve(p).then(value => {
+                        results[index] = value;
+                        completed++;
+                        if(completed === promises.length) {
+                            resolve(results);
+                        }
+                    }).catch(reject);
+                });
+                if(promises.length === 0) {
+                    resolve([]);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
