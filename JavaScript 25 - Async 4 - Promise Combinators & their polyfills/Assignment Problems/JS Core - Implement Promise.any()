@@ -1,7 +1,7 @@
 				QUESTION
 
 Problem Statement:
--------------------------------------
+-----------------------------
 Promise.any() takes an iterable of elements (usually Promises). 
 It returns a single promise that resolves as soon as any of the elements in the iterable fulfills, with the value of the fulfilled promise. 
 If no promises in the iterable fulfill, then the returned promise is rejected with an AggregateError, a new subclass of Error that groups together individual errors.
@@ -60,7 +60,7 @@ Example 3:
 
 Test Cases:
 	-> Test Case => Example 3 from the problem description is being utilised to test the code.
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 				SOLUTION
 
 <!DOCTYPE html>
